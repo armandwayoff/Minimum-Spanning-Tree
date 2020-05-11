@@ -1,44 +1,44 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <title>Arbre Couvrant de Poids Minimal</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/addons/p5.sound.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <meta charset="utf-8" />
+<head>
+  <title>Arbre Couvrant de Poids Minimal</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/addons/p5.sound.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <meta charset="utf-8" />
+</head>
 
-  </head>
-  <body>
-    <div id="app">
-        <div class="parametres">
-          <h2>Paramètres</h2>
+<body>
+  <div id="app">
+    <div class="parametres">
+      <h2>Paramètres</h2>
 
-          <div class="input">
-            <label for="">Nombre initial de sommets :</label>
-            <input type="number" min="0" max="30" value="12" step="1" id="nbrSommets">
-          </div>
-
-          <div class="input">
-            <label for="">Rayon des sommets (en px) :</label>
-            <input type="number" min="8" max="20" value="10" step="1" id="rayonSommets">
-          </div>
-
-          <div class="input">
-            <button type="button" onclick="regenerer()">Regénérer un arbre</button>
-          </div>
-
-          <div class="input">
-            <label>Nombre de sommets : <span id="nbrSommetsEnCours"></span> / <span class="nbrMaxSommets"></span></label>
-          </div>
-
-          <ul class="info">
-            <li>Le nombre de sommets et limité à <span class="nbrMaxSommets"></span></li>
-            <li><b>Ajouter un point :</b> <kbd class="code">clique gauche</kbd> à l'emplacement souhaité</li>
-            <li><b>Supprimer un point :</b> <kbd class="code">Ctrl</kbd>/<kbd class="code">⌘ Cmd</kbd>+<kbd class="code">clique gauche</kbd> sur le point</li>
-            <!-- <li><b>Déplacer un point :</b> maintenir le <kbd class="code">clique gauche</kbd> sur le point et déplacer la souris lentement</li> -->
-          </ul>
-        </div>
-        <script src="app-arbre-couvrant.js"></script>
+      <div class="input">
+        <label for="">Nombre initial de sommets :</label>
+        <input type="number" min="0" max="30" value="12" step="1" id="nbrSommets">
       </div>
-  </body>
+
+      <div class="input">
+        <label for="">Rayon des sommets (en px) :</label>
+        <input type="number" min="8" max="20" value="10" step="1" id="rayonSommets">
+      </div>
+
+      <div class="input">
+        <button type="button" onclick="regenerer()">Regénérer un arbre</button>
+      </div>
+
+      <div class="input">
+        <label>Nombre de sommets : <span id="nbrSommetsEnCours"></span> / <span class="nbrMaxSommets"></span></label>
+      </div>
+
+      <ul class="info">
+        <li>Le nombre de sommets et limité à <span class="nbrMaxSommets"></span></li>
+        <li><b>Ajouter un point :</b> <kbd class="code">clique gauche</kbd> à l'emplacement souhaité</li>
+        <li><b>Supprimer un point :</b> <kbd class="code">Ctrl</kbd>/<kbd class="code">⌘ Cmd</kbd>+<kbd class="code">clique gauche</kbd> sur le point</li>
+        <!-- <li><b>Déplacer un point :</b> maintenir le <kbd class="code">clique gauche</kbd> sur le point et déplacer la souris lentement</li> -->
+      </ul>
+    </div>
+    <script src="app-arbre-couvrant.js"></script>
+  </div>
+</body>
 </html>
