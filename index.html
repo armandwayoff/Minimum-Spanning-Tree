@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
+
 <head>
-  <title>Arbre Couvrant de Poids Minimal</title>
+  <title>Minimum Spanning Tree - Interactive Application</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/addons/p5.sound.min.js"></script>
   <link rel="stylesheet" type="text/css" href="style.css">
@@ -9,36 +10,38 @@
 </head>
 
 <body>
+  <h1 class="page-title">Minimum Spanning Tree - Interactive Application</h1>
+
   <div id="app">
-    <div class="parametres">
-      <h2>Paramètres</h2>
+    <div>
+      <h2>Parameters</h2>
 
       <div class="input">
-        <label for="">Nombre initial de sommets :</label>
-        <input type="number" min="0" max="30" value="12" step="1" id="nbrSommets">
+        <label for="">Initial number of vertices:</label>
+        <input type="number" min="0" max="30" value="12" step="1" id="nbrVertices">
       </div>
 
       <div class="input">
-        <label for="">Rayon des sommets (en px) :</label>
-        <input type="number" min="8" max="20" value="10" step="1" id="rayonSommets">
+        <label for="">Radius of vertices (in px):</label>
+        <input type="number" min="8" max="20" value="10" step="1" id="radiusVertices">
       </div>
 
       <div class="input">
-        <button type="button" onclick="regenerer()">Regénérer un arbre</button>
+        <button type="button" onclick="regenerate()">Regenerate a tree</button>
       </div>
 
       <div class="input">
-        <label>Nombre de sommets : <span id="nbrSommetsEnCours"></span> / <span class="nbrMaxSommets"></span></label>
+        <label>Number of vertices : <span id="nbrCurrentVertices"></span> / <span class="nbrMaxVertices"></span></label>
       </div>
 
       <ul class="info">
-        <li>Le nombre de sommets et limité à <span class="nbrMaxSommets"></span></li>
-        <li><b>Ajouter un point :</b> <kbd class="code">clique gauche</kbd> à l'emplacement souhaité</li>
-        <li><b>Supprimer un point :</b> <kbd class="code">Ctrl</kbd>/<kbd class="code">⌘ Cmd</kbd>+<kbd class="code">clique gauche</kbd> sur le point</li>
-        <!-- <li><b>Déplacer un point :</b> maintenir le <kbd class="code">clique gauche</kbd> sur le point et déplacer la souris lentement</li> -->
+        <li>The number of vertices and limited to <span class="nbrMaxVertices"></span></li>
+        <li><b>Add a vertex :</b> <kbd class="code">left click</kbd> at the desired location</li>
+        <li><b>Delete a vertex :</b> <kbd class="code">Ctrl</kbd>/<kbd class="code">⌘ Cmd</kbd>+<kbd class="code">left click</kbd> on the vertex</li>
       </ul>
     </div>
-    <script src="app-arbre-couvrant.js"></script>
+    <script src="minimum-spanning-tree.js"></script>
   </div>
 </body>
+
 </html>
