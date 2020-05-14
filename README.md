@@ -4,4 +4,4 @@ This project was inspired by the video [9.9: Minimum Spanning Tree (Prim's Algor
 
 ## Overview of the Application
 
-![overview-application](illustration_images/overview-application.png)
+![overview-application](illustration_image/overview-application.png)
