@@ -1,134 +1,133 @@
-// Code original par Daniel Shiffman puis modifié par Armand Wayoff
+// Original code by Daniel Shiffman (https://github.com/shiffman) then modified by Armand Wayoff
 
-const largeurCanvas = 450;
-const bord = 10;
-const nbrMaxSommets = document.getElementById("nbrSommets").max;
+const border = 10;
+const nbrMaxVertices = document.getElementById("nbrVertices").max;
 
-let txtNbrMaxSommets = document.getElementsByClassName("nbrMaxSommets");
-let nbrSommets = document.getElementById("nbrSommets").value;
-let rayonSommets = Number(document.getElementById("rayonSommets").value);
-let epaisseurAretes = rayonSommets / 2;
-let distMinimaleEntreSommets = rayonSommets * 3;
-let sommets = [];
+let nbrVertices = document.getElementById("nbrVertices").value;
+let radiusVertices = Number(document.getElementById("radiusVertices").value);
+let thicknessEdges = radiusVertices / 2;
+let minDistBetweenVertices = radiusVertices * 3;
+let vertices = [];
 
 function setup() {
-  let canvas = createCanvas(largeurCanvas, largeurCanvas);
+  let widthCanvas = 0.4 * window.innerWidth;
+  let canvas = createCanvas(widthCanvas, 450);
   canvas.parent("app");
-  regenerer();
+  regenerate();
 }
 
-function regenerer() {
-  nbrSommets = document.getElementById("nbrSommets").value;
-  rayonSommets = Number(document.getElementById("rayonSommets").value);
-  epaisseurAretes = rayonSommets / 2;
-  sommets = [];
-  if (nbrSommets > 0) {
-    sommets.push(new Sommet(random(bord + rayonSommets, width - rayonSommets - bord), random(bord + rayonSommets, height - rayonSommets - bord)));
+function regenerate() {
+  nbrVertices = document.getElementById("nbrVertices").value;
+  radiusVertices = Number(document.getElementById("radiusVertices").value);
+  thicknessEdges = radiusVertices / 2;
+  vertices = [];
+  if (nbrVertices > 0) {
+    vertices.push(new Vertex(random(border + radiusVertices, width - radiusVertices - border), random(border + radiusVertices, height - radiusVertices - border)));
     let iter = 1;
-    while (iter < nbrSommets) {
-      let som = new Sommet(random(bord + rayonSommets, width - rayonSommets - bord), random(bord + rayonSommets, height - rayonSommets - bord));
-      if (!superposition(som, sommets)) {
-        sommets.push(som);
+    while (iter < nbrVertices) {
+      let som = new Vertex(random(border + radiusVertices, width - radiusVertices - border), random(border + radiusVertices, height - radiusVertices - border));
+      if (!overlay(som, vertices)) {
+        vertices.push(som);
         iter++;
       }
     }
   }
 }
 
-function superposition(obj, list) {
+function overlay(obj, list) {
   for (let i = 0; i < list.length; i++) {
-    if (dist(obj.x, obj.y, list[i].x, list[i].y) <= distMinimaleEntreSommets) {
+    if (dist(obj.x, obj.y, list[i].x, list[i].y) <= minDistBetweenVertices) {
       return true;
     }
   }
   return false;
 }
 
-function cliqueSurCavas() {
-  return (mouseIsPressed && mouseButton === LEFT) && (mouseX >= bord + rayonSommets && mouseX <= width - rayonSommets - bord) && (mouseY >= bord + rayonSommets && mouseY <= height - rayonSommets - bord);
+function clickOnCanvas() {
+  return (mouseIsPressed && mouseButton === LEFT) && (mouseX >= border + radiusVertices && mouseX <= width - radiusVertices - border) && (mouseY >= border + radiusVertices && mouseY <= height - radiusVertices - border);
 }
 
-function ajouterSommet(x, y) {
-  if (cliqueSurCavas() && sommets.length < nbrMaxSommets) {
-    let som = new Sommet(x, y);
-    if (!superposition(som, sommets)) {
-      sommets.push(som);
+function addVertex(x, y) {
+  if (clickOnCanvas() && vertices.length < nbrMaxVertices) {
+    let som = new Vertex(x, y);
+    if (!overlay(som, vertices)) {
+      vertices.push(som);
     }
   }
 }
 
-function supprimerSommet() {
-  for (let i = 0; i < sommets.length; i++) {
-    if (keyIsPressed === true && (keyCode === 17 || keyCode === 91) && sommetSelectionne(i) && cliqueSurCavas()) {
-      sommets.splice(i, 1);
+function deleteVertex() {
+  for (let i = 0; i < vertices.length; i++) {
+    if (keyIsPressed === true && (keyCode === 17 || keyCode === 91) && selectedVertex(i) && clickOnCanvas()) {
+      vertices.splice(i, 1);
     }
   }
 }
 
-function sommetSelectionne(i) {
-  return abs(mouseX - sommets[i].x) < rayonSommets && abs(mouseY - sommets[i].y) < rayonSommets;
+function selectedVertex(i) {
+  return abs(mouseX - vertices[i].x) < radiusVertices && abs(mouseY - vertices[i].y) < radiusVertices;
 }
 
 function draw() {
   background(255);
 
-  ajouterSommet(mouseX, mouseY);
-  supprimerSommet();
+  addVertex(mouseX, mouseY);
+  deleteVertex();
 
-  nbrSommetsEnCours.innerHTML = sommets.length;
-  for (let i = 0; i < txtNbrMaxSommets.length; i++) {
-    txtNbrMaxSommets[i].innerHTML = nbrMaxSommets;
+  nbrCurrentVertices.innerHTML = vertices.length;
+  for (let i = 0; i < document.getElementsByClassName("nbrMaxVertices").length; i++) {
+    document.getElementsByClassName("nbrMaxVertices")[i].innerHTML = nbrMaxVertices;
   }
 
-  let ptnAtteints = [];
-  let ptnNonAtteints = [];
+  let reachedVertex = [];
+  let unreachedVertex = [];
 
-  for (let i = 1; i < sommets.length; i++) {
-    ptnNonAtteints.push(sommets[i]);
+  for (let i = 1; i < vertices.length; i++) {
+    unreachedVertex.push(vertices[i]);
   }
 
-  ptnAtteints.push(sommets[0]);
+  reachedVertex.push(vertices[0]);
 
 
-  while (ptnNonAtteints.length > 0) {
-    let distRecord = Infinity;
-    let indicePtnAtteint;
-    let indicePtnNonAtteint;
+  while (unreachedVertex.length > 0) {
+    let recordDistance = Infinity;
+    let reachedIndex;
+    let unreachedIndex;
 
-    for (let i = 0; i < ptnAtteints.length; i++) {
-      for (let j = 0; j < ptnNonAtteints.length; j++) {
-        let ptnAtt = ptnAtteints[i];
-        let ptnNonAtt = ptnNonAtteints[j];
-        let d = dist(ptnAtt.x, ptnAtt.y, ptnNonAtt.x, ptnNonAtt.y);
+    for (let i = 0; i < reachedVertex.length; i++) {
+      for (let j = 0; j < unreachedVertex.length; j++) {
+        let v1 = reachedVertex[i];
+        let v2 = unreachedVertex[j];
+        let d = dist(v1.x, v1.y, v2.x, v2.y);
 
-        if (d < distRecord) {
-          distRecord = d;
-          indicePtnAtteint = i;
-          indicePtnNonAtteint = j;
+        if (d < recordDistance) {
+          recordDistance = d;
+          reachedIndex = i;
+          unreachedIndex = j;
         }
       }
     }
     stroke(0);
-    strokeWeight(epaisseurAretes);
-    line(ptnAtteints[indicePtnAtteint].x, ptnAtteints[indicePtnAtteint].y, ptnNonAtteints[indicePtnNonAtteint].x, ptnNonAtteints[indicePtnNonAtteint].y);
-    ptnAtteints.push(ptnNonAtteints[indicePtnNonAtteint]);
-    ptnNonAtteints.splice(indicePtnNonAtteint, 1);
+    strokeWeight(thicknessEdges);
+    line(reachedVertex[reachedIndex].x, reachedVertex[reachedIndex].y, unreachedVertex[unreachedIndex].x, unreachedVertex[unreachedIndex].y);
+    reachedVertex.push(unreachedVertex[unreachedIndex]);
+    unreachedVertex.splice(unreachedIndex, 1);
   }
 
-  for (let i = 0; i < sommets.length; i++) {
-    sommets[i].affichage();
+  for (let i = 0; i < vertices.length; i++) {
+    vertices[i].display();
   }
 }
 
-class Sommet {
+class Vertex {
   constructor(x_, y_) {
     this.x = x_;
     this.y = y_;
   }
 
-  affichage() {
+  display() {
     noStroke();
     fill(255, 0, 255);
-    circle(this.x, this.y, rayonSommets * 2);
+    circle(this.x, this.y, radiusVertices * 2);
   }
 }
