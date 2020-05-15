@@ -3,10 +3,7 @@
 const border = 10;
 const nbrMaxVertices = document.getElementById("nbrVertices").max;
 
-let nbrVertices = document.getElementById("nbrVertices").value;
-let radiusVertices = Number(document.getElementById("radiusVertices").value);
-let thicknessEdges = radiusVertices / 2;
-let minDistBetweenVertices = radiusVertices * 3;
+let radiusVertices, thicknessEdges;
 let vertices = [];
 
 function setup() {
@@ -25,9 +22,9 @@ function regenerate() {
     vertices.push(new Vertex(random(border + radiusVertices, width - radiusVertices - border), random(border + radiusVertices, height - radiusVertices - border)));
     let iter = 1;
     while (iter < nbrVertices) {
-      let som = new Vertex(random(border + radiusVertices, width - radiusVertices - border), random(border + radiusVertices, height - radiusVertices - border));
-      if (!overlay(som, vertices)) {
-        vertices.push(som);
+      let newVertex = new Vertex(random(border + radiusVertices, width - radiusVertices - border), random(border + radiusVertices, height - radiusVertices - border));
+      if (!overlay(newVertex, vertices)) {
+        vertices.push(newVertex);
         iter++;
       }
     }
@@ -35,6 +32,7 @@ function regenerate() {
 }
 
 function overlay(obj, list) {
+  const minDistBetweenVertices = radiusVertices * 3;
   for (let i = 0; i < list.length; i++) {
     if (dist(obj.x, obj.y, list[i].x, list[i].y) <= minDistBetweenVertices) {
       return true;
@@ -43,22 +41,22 @@ function overlay(obj, list) {
   return false;
 }
 
-function clickOnCanvas() {
-  return (mouseIsPressed && mouseButton === LEFT) && (mouseX >= border + radiusVertices && mouseX <= width - radiusVertices - border) && (mouseY >= border + radiusVertices && mouseY <= height - radiusVertices - border);
+function mouseOnCanvas() {
+  return (mouseX >= border + radiusVertices && mouseX <= width - radiusVertices - border) && (mouseY >= border + radiusVertices && mouseY <= height - radiusVertices - border);
 }
 
 function addVertex(x, y) {
-  if (clickOnCanvas() && vertices.length < nbrMaxVertices) {
-    let som = new Vertex(x, y);
-    if (!overlay(som, vertices)) {
-      vertices.push(som);
+  if (mouseOnCanvas() && vertices.length < nbrMaxVertices) {
+    let newVertex = new Vertex(x, y);
+    if (!overlay(newVertex, vertices)) {
+      vertices.push(newVertex);
     }
   }
 }
 
 function deleteVertex() {
   for (let i = 0; i < vertices.length; i++) {
-    if (keyIsPressed === true && (keyCode === 17 || keyCode === 91) && selectedVertex(i) && clickOnCanvas()) {
+    if (mouseOnCanvas() && keyIsPressed === true && (keyCode === 17 || keyCode === 91) && selectedVertex(i)) {
       vertices.splice(i, 1);
     }
   }
@@ -68,11 +66,15 @@ function selectedVertex(i) {
   return abs(mouseX - vertices[i].x) < radiusVertices && abs(mouseY - vertices[i].y) < radiusVertices;
 }
 
+function mousePressed() {
+  if (mouseButton === LEFT) {
+    addVertex(mouseX, mouseY);
+    deleteVertex();
+  }
+}
+
 function draw() {
   background(255);
-
-  addVertex(mouseX, mouseY);
-  deleteVertex();
 
   nbrCurrentVertices.innerHTML = vertices.length;
   for (let i = 0; i < document.getElementsByClassName("nbrMaxVertices").length; i++) {
