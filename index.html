@@ -16,32 +16,37 @@
     <div>
       <h2>Parameters</h2>
 
-      <div class="input">
+      <div class="inputs">
         <label for="">Initial number of vertices:</label>
         <input type="number" min="0" max="30" value="12" step="1" id="nbrVertices">
       </div>
 
-      <div class="input">
+      <div class="inputs">
         <label for="">Radius of vertices (in px):</label>
         <input type="number" min="8" max="20" value="10" step="1" id="radiusVertices">
       </div>
 
-      <div class="input">
+      <div class="inputs">
         <button type="button" onclick="regenerate()">Regenerate a tree</button>
       </div>
 
-      <div class="input">
+      <div class="inputs">
         <label>Number of vertices : <span id="nbrCurrentVertices"></span> / <span class="nbrMaxVertices"></span></label>
       </div>
 
       <ul class="info">
         <li>The number of vertices is limited to <span class="nbrMaxVertices"></span></li>
-        <li><b>Add a vertex :</b> <kbd class="code">left click</kbd> at the desired location</li>
-        <li><b>Delete a vertex :</b> <kbd class="code">Ctrl</kbd>/<kbd class="code">⌘ Cmd</kbd>+<kbd class="code">left click</kbd> on the vertex</li>
+        <li><b>Add a vertex :</b> <kbd class="commands">left click</kbd> at the desired location</li>
+        <li><b>Delete a vertex :</b> <kbd class="commands">Ctrl</kbd>/<kbd class="commands">⌘ Cmd</kbd>+<kbd class="commands">left click</kbd> on the vertex</li>
       </ul>
     </div>
-    <script src="minimum-spanning-tree.js"></script>
   </div>
+
+  <footer>
+    <p>Made by <a href="https://github.com/armandwayoff" title="Visit my GitHub!" target="_blank">Armand Wayoff</a></p>
+  </footer>
+
+  <script src="minimum-spanning-tree.js.js"></script>
 </body>
 
 </html>
