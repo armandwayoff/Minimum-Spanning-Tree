@@ -1,10 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
-html,
-body {
-  margin: 0;
-  padding: 0;
+* {
   font-family: "Roboto", sans-serif;
+  text-align: center;
 }
 
 body {
@@ -49,21 +47,28 @@ canvas {
   border: 1px solid #333;
 }
 
+footer {
+  font-size: 13pt;
+}
+
+a {
+  text-decoration: none;
+  color: #ff004e;
+}
+
 .page-title {
   color: #ff004e;
   border-bottom: 1.5px solid #ff004e;
   margin: 15px 0;
   padding-bottom: 5px;
   font-size: 20pt;
-  text-align: center;
 }
 
 #app {
-  margin-top: 50px;
+  margin: 50px;
   display: flex;
+  justify-content: center;
   align-items: center;
-  text-align: center;
-  width: 100%;
 }
 
 #app h2 {
@@ -71,7 +76,7 @@ canvas {
   border-bottom: 2px solid #333;
 }
 
-#app div {
+.inputs {
   margin: 10px;
 }
 
@@ -84,7 +89,7 @@ canvas {
   margin: 5px 0;
 }
 
-.code {
+.commands {
   background-image: linear-gradient(to bottom, #eee, #f9f9f9, #eee);
   padding: 0.1em 0.3em;
   font-family: monospace;
