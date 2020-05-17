@@ -9,7 +9,7 @@ let vertices = [];
 function setup() {
   let widthCanvas = 0.4 * window.innerWidth;
   let canvas = createCanvas(widthCanvas, 450);
-  canvas.parent("app");
+  canvas.parent("canvas");
   regenerate();
 }
 
@@ -109,7 +109,7 @@ function draw() {
         }
       }
     }
-    stroke(0);
+    stroke(0, 200, 255);
     strokeWeight(thicknessEdges);
     line(reachedVertex[reachedIndex].x, reachedVertex[reachedIndex].y, unreachedVertex[unreachedIndex].x, unreachedVertex[unreachedIndex].y);
     reachedVertex.push(unreachedVertex[unreachedIndex]);
@@ -128,8 +128,7 @@ class Vertex {
   }
 
   display() {
-    noStroke();
-    fill(255, 0, 255);
+    stroke(0, 50, 255);
     circle(this.x, this.y, radiusVertices * 2);
   }
 }
