@@ -90,18 +90,16 @@ function draw() {
 
   reachedVertex.push(vertices[0]);
 
-
   while (unreachedVertex.length > 0) {
     let recordDistance = Infinity;
     let reachedIndex;
     let unreachedIndex;
-
+    
     for (let i = 0; i < reachedVertex.length; i++) {
       for (let j = 0; j < unreachedVertex.length; j++) {
         let v1 = reachedVertex[i];
         let v2 = unreachedVertex[j];
         let d = dist(v1.x, v1.y, v2.x, v2.y);
-
         if (d < recordDistance) {
           recordDistance = d;
           reachedIndex = i;
