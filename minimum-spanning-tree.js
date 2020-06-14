@@ -81,24 +81,24 @@ function draw() {
     document.getElementsByClassName("nbrMaxVertices")[i].innerHTML = nbrMaxVertices;
   }
 
-  let reachedVertex = [];
-  let unreachedVertex = [];
+  let reachedVertices = [];
+  let unreachedVertices = [];
 
   for (let i = 1; i < vertices.length; i++) {
-    unreachedVertex.push(vertices[i]);
+    unreachedVertices.push(vertices[i]);
   }
 
-  reachedVertex.push(vertices[0]);
+  reachedVertices.push(vertices[0]);
 
-  while (unreachedVertex.length > 0) {
+  while (unreachedVertices.length > 0) {
     let recordDistance = Infinity;
     let reachedIndex;
     let unreachedIndex;
     
-    for (let i = 0; i < reachedVertex.length; i++) {
-      for (let j = 0; j < unreachedVertex.length; j++) {
-        let v1 = reachedVertex[i];
-        let v2 = unreachedVertex[j];
+    for (let i = 0; i < reachedVertices.length; i++) {
+      for (let j = 0; j < unreachedVertices.length; j++) {
+        let v1 = reachedVertices[i];
+        let v2 = unreachedVertices[j];
         let d = dist(v1.x, v1.y, v2.x, v2.y);
         if (d < recordDistance) {
           recordDistance = d;
@@ -109,9 +109,9 @@ function draw() {
     }
     stroke(0, 200, 255);
     strokeWeight(thicknessEdges);
-    line(reachedVertex[reachedIndex].x, reachedVertex[reachedIndex].y, unreachedVertex[unreachedIndex].x, unreachedVertex[unreachedIndex].y);
-    reachedVertex.push(unreachedVertex[unreachedIndex]);
-    unreachedVertex.splice(unreachedIndex, 1);
+    line(reachedVertices[reachedIndex].x, reachedVertices[reachedIndex].y, unreachedVertices[unreachedIndex].x, unreachedVertices[unreachedIndex].y);
+    reachedVertices.push(unreachedVertices[unreachedIndex]);
+    unreachedVertices.splice(unreachedIndex, 1);
   }
 
   for (let i = 0; i < vertices.length; i++) {
