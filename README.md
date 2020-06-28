@@ -1,4 +1,4 @@
-# Minimum Spanning Tree - Interactive Application
+![repository_title](illustration_image/repository_title.png)
 
 This project was inspired by the video [9.9: Minimum Spanning Tree (Prim's Algorithm) - p5.js Tutorial](https://youtu.be/BxabnKrOjT0) made by [Daniel Shiffman](https://github.com/shiffman).
 
