@@ -1,10 +1,10 @@
-# Minimum Spanning Tree
+![readme_title](readme_title.png)
 
 This project was inspired by the video [9.9: Minimum Spanning Tree (Prim's Algorithm) - p5.js Tutorial](https://youtu.be/BxabnKrOjT0) made by [Daniel Shiffman](https://github.com/shiffman).
 
 The interactive application is programmed with the [p5.js library](https://p5js.org/). This library is ideal because it has a full set of drawing functionality.
 
-To use the library, simply add it to your HTML code:
+To use the library, simply add it to your ```HTML``` code:
 ```html
 <!DOCTYPE html>
 <html>
