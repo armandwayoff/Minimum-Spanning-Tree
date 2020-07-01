@@ -1,3 +1,5 @@
+[![made-with-js](https://img.shields.io/badge/Made_with-JavaScript-f7df1e.svg)](https://developer.mozilla.org/fr/docs/Web/JavaScript)
+
 ![readme_title](readme_title.png)
 
 This project was inspired by the video [9.9: Minimum Spanning Tree (Prim's Algorithm) - p5.js Tutorial](https://youtu.be/BxabnKrOjT0) made by [Daniel Shiffman](https://github.com/shiffman).
