@@ -1,4 +1,4 @@
-[![made-with-js](https://img.shields.io/badge/Made_with-JavaScript-f7df1e.svg)](https://developer.mozilla.org/fr/docs/Web/JavaScript)
+[![made-with-p5js](https://img.shields.io/badge/Made_with-p5.js-ED1F5E.svg)](https://p5js.org)
 
 ![readme_title](readme_title.png)
 
