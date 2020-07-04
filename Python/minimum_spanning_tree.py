@@ -35,6 +35,7 @@ for i in range(NUMBER_VERTICES):
     print(i, ": (" + str(new_vertex.x), ";", str(new_vertex.y) + ")")
 
 reached_vertices.append(vertices[0])
+del unreached_vertices[0]
 
 while len(unreached_vertices) > 0:
     record_distance = dist(0, 0, WIDTH, HEIGHT)
