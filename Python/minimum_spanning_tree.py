@@ -16,8 +16,9 @@ def dist(x1, y1, x2, y2):
 
 G = nx.Graph()
 
-NUMBER_VERTICES = 10
+NUMBER_VERTICES = 40
 WIDTH = HEIGHT = 100  # dimension of the canvas
+VERTEX_SIZE = 200
 
 vertices = []
 reached_vertices = []
@@ -32,6 +33,7 @@ for i in range(NUMBER_VERTICES):
     new_vertex = Vertex(randint(0, WIDTH), randint(0, HEIGHT))
     vertices.append(new_vertex)
     unreached_vertices.append(new_vertex)
+    G.add_node(i, pos=(new_vertex.x, new_vertex.y))
     print(i, ": (" + str(new_vertex.x), ";", str(new_vertex.y) + ")")
 
 reached_vertices.append(vertices[0])
@@ -62,5 +64,6 @@ print("Adjacency matrix :")
 for row in adjacency_matrix:
     print(*row)
 
-nx.draw(G, node_color='orange', with_labels=True)
+pos=nx.get_node_attributes(G, 'pos')
+nx.draw(G, pos, node_size=VERTEX_SIZE, node_color='orange', with_labels=True)
 plt.show()
