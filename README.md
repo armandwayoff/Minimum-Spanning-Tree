@@ -10,6 +10,7 @@ This project was inspired by the video [9.9: Minimum Spanning Tree (Prim's Algor
  * [Interactive Application](#interactive-application)
  * [Python Version](#python-version)
     * [How to Use This Code](#how-to-use-this-code)
+    * [Output Example](#output-example)
 
 
 # Interactive Application
@@ -46,3 +47,7 @@ You will find all the information necessary for its installation on the followin
 ### Installing NetworkX
 
 You will find all the information necessary for its installation on the following page : <https://networkx.github.io/documentation/networkx-1.9/install.html>
+
+## Output Example
+
+![output-example](illustration_image/output_example.png)
