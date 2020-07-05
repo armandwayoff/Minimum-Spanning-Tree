@@ -14,17 +14,17 @@ def dist(x1, y1, x2, y2):
     return sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2)
 
 
-G = nx.Graph()
-
-NUMBER_VERTICES = 40
+NUMBER_VERTICES = 100
 WIDTH = HEIGHT = 100  # dimension of the canvas
-VERTEX_SIZE = 200
+VERTEX_SIZE = 150
 
 vertices = []
 reached_vertices = []
 unreached_vertices = []
 
 adjacency_matrix = [[0 for col in range(NUMBER_VERTICES)] for row in range(NUMBER_VERTICES)]
+
+G = nx.Graph()
 
 print("* Minimum Spanning Tree *")
 print("Number of vertices :", NUMBER_VERTICES, "| Dimensions of the canvas : (" + str(WIDTH), ";", str(HEIGHT) + ")\n")
@@ -64,6 +64,6 @@ print("Adjacency matrix :")
 for row in adjacency_matrix:
     print(*row)
 
-pos=nx.get_node_attributes(G, 'pos')
+pos = nx.get_node_attributes(G, 'pos')
 nx.draw(G, pos, node_size=VERTEX_SIZE, node_color='orange', with_labels=True)
 plt.show()
