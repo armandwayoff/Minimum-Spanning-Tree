@@ -50,4 +50,6 @@ You will find all the information necessary for its installation on the followin
 
 ## Output Example
 
+Output example with ```100``` vertices :
+
 ![output-example](illustration_image/output_example.png)
