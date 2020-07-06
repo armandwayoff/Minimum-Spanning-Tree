@@ -40,13 +40,13 @@ To use the library, simply add it to your ```HTML``` code:
 
 To run this code, you will need the libraries [NetworkX](https://networkx.github.io/) and [Matplotlib](https://matplotlib.org/). NetworkX is a Python package for the creation, manipulation, and study of the structure, dynamics, and functions of complex networks.
 
-### Installing Matplotlib
-
-You will find all the information necessary for its installation on the following page : <https://matplotlib.org/users/installing.html>
-
 ### Installing NetworkX
 
 You will find all the information necessary for its installation on the following page : <https://networkx.github.io/documentation/networkx-1.9/install.html>
+
+### Installing Matplotlib
+
+You will find all the information necessary for its installation on the following page : <https://matplotlib.org/users/installing.html>
 
 ## Output Example
 
