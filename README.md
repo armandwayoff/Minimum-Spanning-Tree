@@ -33,7 +33,7 @@ To use the library, simply add it to your ```HTML``` code:
 
 ### Overview of the Application
 
-![overview-application](illustration_image/overview-application.png)
+![overview-application](images/overview-application.png)
 
 
 ## Python Version
@@ -54,7 +54,7 @@ You will find all the information necessary for its installation on the followin
 
 Output example with ```100``` vertices :
 
-![output-example](illustration_image/output_example.png)
+![output-example](images/output_example.png)
 
 ## License
 
