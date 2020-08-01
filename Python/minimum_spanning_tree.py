@@ -65,5 +65,5 @@ for row in adjacency_matrix:
     print(*row)
 
 pos = nx.get_node_attributes(G, 'pos')
-nx.draw(G, pos, node_size=VERTEX_SIZE, node_color='orange', with_labels=True)
+nx.draw(G, pos, node_size=VERTEX_SIZE, node_color='orange')
 plt.show()
